@@ -6,7 +6,7 @@ echo "deb https://mirror.albony.xyz/termux/termux-main stable main" > $PREFIX/et
 termux-setup-storage &&
 pkg install git mpv -y;
 # pip install yt-dlp;
-cd $PREFIX && curl -LJO https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.tar.gz && tar -xvf yt-dlp
+cd $PREFIX && curl -LJO https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.tar.gz && tar -xvf yt-dlp.tar.gz
 echo 'export PATH="$PREFIX/yt-dlp:$PATH"' >> $PREFIX/etc/bash.bashrc
 # cd storage && mkdir -p termux;
 mkdir -p $HOME/storage/termux
