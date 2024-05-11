@@ -30,8 +30,17 @@ termux-setup-storage &&
 
 # Install required packages
 pkg install git mpv -y;
-# pip install yt-dlp;
-cd $PREFIX && curl -LJOf https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.tar.gz && tar -xvf yt-dlp.tar.gz
+
+# Check if yt-dlp.tar.gz already exists
+if [ ! -f "$PREFIX/yt-dlp/yt-dlp.tar.gz" ]; then
+    # If not, download yt-dlp.tar.gz
+    cd $PREFIX && curl -LJO https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.tar.gz
+fi
+
+# Extract yt-dlp.tar.gz
+tar -xvf $PREFIX/yt-dlp/yt-dlp.tar.gz -C $PREFIX/yt-dlp/
+
+# Add yt-dlp to PATH
 echo 'export PATH="$PREFIX/yt-dlp:$PATH"' >> $PREFIX/etc/bash.bashrc
 
 # Create directory if not exists
