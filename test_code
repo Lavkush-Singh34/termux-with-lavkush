@@ -1,12 +1,12 @@
+# Set up storage access
+termux-setup-storage &&
+
 # Update and upgrade packages
 yes | pkg update -y &&
 pkg upgrade -y;
 
 # Add Termux repository
 echo "deb https://mirror.albony.xyz/termux/termux-main stable main" > $PREFIX/etc/apt/sources.list;
-
-# Set up storage access
-termux-setup-storage &&
 
 # Install required packages
 pkg install git -y;
