@@ -1,18 +1,46 @@
 #!/bin/bash
 
+# yes | pkg update -y &&
+# pkg upgrade -y;
+# echo "deb https://mirror.albony.xyz/termux/termux-main stable main" > $PREFIX/etc/apt/sources.list;
+# termux-setup-storage &&
+# pkg install git mpv -y;
+# # pip install yt-dlp;
+# cd $PREFIX && curl -LJO https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.tar.gz && tar -xvf yt-dlp.tar.gz
+# echo 'export PATH="$PREFIX/yt-dlp:$PATH"' >> $PREFIX/etc/bash.bashrc
+# # cd storage && mkdir -p termux;
+# mkdir -p $HOME/storage/termux
+# #git clone https://github.com/Lavkush-Singh34/ytd-cli.git;
+# #chmod +x ./ytd-cli/yt;
+# #curl -JO https://raw.githubusercontent.com/Lavkush-Singh34/ytd-cli/main/yt -o $PREFIX/bin
+# curl -JO https://raw.githubusercontent.com/Lavkush-Singh34/ytd-cli/main/yt && chmod +x yt && mv yt $PREFIX/bin/
+# echo "Congratulations..!"
+
+#!/bin/bash
+
+# Update and upgrade packages
 yes | pkg update -y &&
 pkg upgrade -y;
+
+# Add Termux repository
 echo "deb https://mirror.albony.xyz/termux/termux-main stable main" > $PREFIX/etc/apt/sources.list;
+
+# Set up storage access
 termux-setup-storage &&
+
+# Install required packages
 pkg install git mpv -y;
 # pip install yt-dlp;
-cd $PREFIX && curl -LJO https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.tar.gz && tar -xvf yt-dlp.tar.gz
+cd $PREFIX && curl -LJOf https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.tar.gz && tar -xvf yt-dlp.tar.gz
 echo 'export PATH="$PREFIX/yt-dlp:$PATH"' >> $PREFIX/etc/bash.bashrc
-# cd storage && mkdir -p termux;
-mkdir -p $HOME/storage/termux
-#git clone https://github.com/Lavkush-Singh34/ytd-cli.git;
-#chmod +x ./ytd-cli/yt;
-#curl -JO https://raw.githubusercontent.com/Lavkush-Singh34/ytd-cli/main/yt -o $PREFIX/bin
-curl -JO https://raw.githubusercontent.com/Lavkush-Singh34/ytd-cli/main/yt && chmod +x yt && mv yt $PREFIX/bin/
-echo "Congratulations..!"
 
+# Create directory if not exists
+mkdir -p $HOME/storage/termux
+
+# Check if yt binary already exists
+if [ ! -f "$PREFIX/bin/yt" ]; then
+    # If not, download ytd-cli and set permissions
+    curl -JO https://raw.githubusercontent.com/Lavkush-Singh34/ytd-cli/main/yt && chmod +x yt && mv yt $PREFIX/bin/
+fi
+
+echo "Congratulations..!"
