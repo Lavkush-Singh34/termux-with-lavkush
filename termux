@@ -16,7 +16,7 @@
 # curl -JO https://raw.githubusercontent.com/Lavkush-Singh34/ytd-cli/main/yt && chmod +x yt && mv yt $PREFIX/bin/
 # echo "Congratulations..!"
 
-#!/bin/bash
+
 
 # Update and upgrade packages
 yes | pkg update -y &&
