@@ -25,7 +25,7 @@ echo 'export PATH="$PREFIX/yt-dlp:$PATH"' >> $PREFIX/etc/bash.bashrc
 source $PREFIX/etc/bash.bashrc
 
 # Create directory if not exists
-mkdir -p $HOME/storage/termux
+mkdir -p $HOME/storage/downloads/termux
 
 # Check if yt binary already exists
 if [ ! -f "$PREFIX/bin/yt" ]; then
