@@ -9,7 +9,7 @@ echo "deb https://mirror.albony.xyz/termux/termux-main stable main" > $PREFIX/et
 termux-setup-storage &&
 
 # Install required packages
-pkg install git mpv -y;
+pkg install git -y;
 
 # Check if yt-dlp.tar.gz already exists
 if [ ! -f "$PREFIX/yt-dlp.tar.gz" ]; then
