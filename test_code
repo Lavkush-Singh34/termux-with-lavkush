@@ -1,0 +1,36 @@
+# Update and upgrade packages
+yes | pkg update -y &&
+pkg upgrade -y;
+
+# Add Termux repository
+echo "deb https://mirror.albony.xyz/termux/termux-main stable main" > $PREFIX/etc/apt/sources.list;
+
+# Set up storage access
+termux-setup-storage &&
+
+# Install required packages
+pkg install git mpv -y;
+
+# Check if yt-dlp.tar.gz already exists
+if [ ! -f "$PREFIX/yt-dlp.tar.gz" ]; then
+    # If not, download yt-dlp.tar.gz
+    cd $PREFIX && curl -LJO https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.tar.gz
+fi
+
+# Extract yt-dlp.tar.gz
+tar -xvf $PREFIX/yt-dlp.tar.gz
+
+# Add yt-dlp to PATH
+echo 'export PATH="$PREFIX/yt-dlp:$PATH"' >> $PREFIX/etc/bash.bashrc
+source $PREFIX/etc/bash.bashrc
+
+# Create directory if not exists
+mkdir -p $HOME/storage/termux
+
+# Check if yt binary already exists
+if [ ! -f "$PREFIX/bin/yt" ]; then
+    # If not, download ytd-cli and set permissions
+    curl -JO https://raw.githubusercontent.com/Lavkush-Singh34/ytd-cli/main/yt && chmod +x yt && mv yt $PREFIX/bin/
+fi
+
+echo "Congratulations..!"
